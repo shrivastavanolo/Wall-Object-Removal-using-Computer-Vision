@@ -18,7 +18,7 @@ def get_img(path):
     pil_img = Image.fromarray(np.uint8(pil_img)).convert("RGB")    ###pil img
     return cv_img,pil_img
 
-img,image=get_img(r"C:\Users\shrey\OneDrive\Documents\sigmoid\wall images\8.jpg")
+img,image=get_img(r"C:\Users\shrey\OneDrive\Documents\sigmoid\image-processing\wall images\8.jpg")
 
 def get_preds(image):
 #prediction detector
