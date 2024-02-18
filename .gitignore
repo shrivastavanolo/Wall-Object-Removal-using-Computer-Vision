@@ -1,0 +1,6 @@
+venvs
+.vscode
+__pycache__
+wall images.zip
+wall images
+model.h5
