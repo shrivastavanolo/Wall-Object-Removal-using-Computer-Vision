@@ -18,7 +18,7 @@ def get_img(path):
     pil_img = Image.fromarray(np.uint8(pil_img)).convert("RGB")    ###pil img
     return cv_img,pil_img
 
-img,image=get_img(r"C:\Users\shrey\OneDrive\Documents\sigmoid\image-processing\wall images\8.jpg")
+# img,image=get_img(r"C:\Users\shrey\OneDrive\Documents\sigmoid\image-processing\wall images\8.jpg")
 
 def get_preds(image):
 #prediction detector
@@ -28,7 +28,7 @@ def get_preds(image):
     )
     return predictions
 
-predictions=get_preds(image)
+# predictions=get_preds(image)
 # mask2 for wall objects (cv2) 
 # masksd for floor objects (stable diffusion)
 
@@ -39,37 +39,34 @@ def mask_img(image,predictions,img):
     draw1.rectangle((0,0,h,w),fill="black")
     iarea=h*w
     for prediction in predictions:
-        if prediction["score"]>=0.1:
+        if prediction["score"]>=0:
             box = prediction["box"]
-            label = prediction["label"]
-            score = prediction["score"]
 
             xmin, ymin, xmax, ymax = box.values()
             area= (ymax-ymin)*(xmax-xmin)
-            if area<=iarea/20:
+            if area<=iarea/5:
                 open_cv_mask = np.zeros(img.shape[:2], dtype="uint8")
-                cv2.rectangle(open_cv_mask, (xmin-7, ymin-7), (xmax+7, ymax+7), 255, -1)
+                cv2.rectangle(open_cv_mask, (xmin-10, ymin-10), (xmax+10, ymax+10), 255, -1)
                 img = cv2.inpaint(img, open_cv_mask, inpaintRadius=7, flags=cv2.INPAINT_NS)
-
-            elif area>iarea/20:
+            else:
                 draw1.rectangle((xmin, ymin, xmax, ymax), outline="white", width=5,fill="white")
+                
     return img, masksd
 
-img,masksd=mask_img(image,predictions,img)
+# img,masksd=mask_img(image,predictions,img)
 
 def convert_cv_img(img):
     return Image.fromarray(img)
 
-im_pil = convert_cv_img(img)
+# im_pil = convert_cv_img(img)
 
-pipeline = StableDiffusionInpaintPipeline.from_pretrained(
-    "runwayml/stable-diffusion-inpainting",
-    torch_dtype=torch.float32,
-    device_map="auto"
-)
+# pipeline = StableDiffusionInpaintPipeline.from_pretrained(
+#     "runwayml/stable-diffusion-inpainting",
+#     torch_dtype=torch.float32,
+# )
 
-pipeline.scheduler = DPMSolverMultistepScheduler.from_config(pipeline.scheduler.config)
-torch.save(pipeline,"model.h5")
+# pipeline.scheduler = DPMSolverMultistepScheduler.from_config(pipeline.scheduler.config)
+# torch.save(pipeline,"model.h5")
 #image and mask_image should be PIL images.
 #The mask structure is white for inpainting and black for keeping as is
 
@@ -80,4 +77,4 @@ def inpaintf(pipeline,im_pil,masksd,name,prompt="background:0.5 wall and floor")
 
     image1.save(name)
 
-inpaintf(pipeline,im_pil,masksd,"hi8.jpeg")
+# inpaintf(pipeline,im_pil,masksd,"hi8.jpeg")
