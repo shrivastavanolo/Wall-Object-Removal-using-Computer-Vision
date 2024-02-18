@@ -24,7 +24,7 @@ def get_preds(image):
 #prediction detector
     predictions = detector(
         image,
-        candidate_labels=["television","tv","box","mirror","decor","clock","frame","cable","air conditioner","white rectangle","black rectangle"]
+        candidate_labels=["television","tv","box","mirror","wall art","wall decoration","clock","photoframe","cable","air conditioner","white rectangle","black rectangle"]
     )
     return predictions
 
@@ -44,10 +44,10 @@ def mask_img(image,predictions,img):
 
             xmin, ymin, xmax, ymax = box.values()
             area= (ymax-ymin)*(xmax-xmin)
-            if area<=iarea/5:
+            if area<=iarea/10:
                 open_cv_mask = np.zeros(img.shape[:2], dtype="uint8")
                 cv2.rectangle(open_cv_mask, (xmin-10, ymin-10), (xmax+10, ymax+10), 255, -1)
-                img = cv2.inpaint(img, open_cv_mask, inpaintRadius=7, flags=cv2.INPAINT_NS)
+                img = cv2.inpaint(img, open_cv_mask, inpaintRadius=10, flags=cv2.INPAINT_NS)
             else:
                 draw1.rectangle((xmin, ymin, xmax, ymax), outline="white", width=5,fill="white")
                 
