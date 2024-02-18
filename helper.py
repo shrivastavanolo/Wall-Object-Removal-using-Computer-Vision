@@ -22,7 +22,7 @@ def get_preds(image):
 #prediction detector
     predictions = detector(
         image,
-        candidate_labels=["television","tv","box","mirror","decor","clock","frame","cable","air conditioner","white rectangle","black rectangle"] #labels can be added or removed according to your preference
+        candidate_labels=["television","tv","box","mirror","wall art","wall decoration","clock","photoframe","cable","air conditioner","white rectangle","black rectangle"] #labels can be added or removed according to your preference
     )
     return predictions
 
