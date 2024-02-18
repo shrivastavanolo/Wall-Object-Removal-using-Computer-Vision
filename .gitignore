@@ -4,3 +4,4 @@ __pycache__
 wall images.zip
 wall images
 model.h5
+.gitignore
