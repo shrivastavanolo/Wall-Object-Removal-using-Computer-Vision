@@ -1,10 +1,18 @@
 import torch
 import helper as df
 
-img,image=df.get_img(r"C:\Users\shrey\OneDrive\Documents\sigmoid\image-processing\wall images\2.jpg")
+#preprocess image using cv2 and PIL
+img,image=df.get_img(r"<path-to-image>")
+
+#Get predictions for candidate labels in image
 predictions=df.get_preds(image)
+
+#Get masks for detected objects
 img,masksd=df.mask_img(image,predictions,img)
 im_pil = df.convert_cv_img(img)
 
-pipeline=torch.load(r"C:\Users\shrey\OneDrive\Documents\sigmoid\image-processing\model.h5")
-df.inpaintf(pipeline,im_pil,masksd,"hi2.jpeg")
+#load model
+pipeline=torch.load(r"path-to-model/model.h5")
+
+#Inpaint the image and save as <image name>
+df.inpaintf(pipeline,im_pil,masked,"<image-name>")
