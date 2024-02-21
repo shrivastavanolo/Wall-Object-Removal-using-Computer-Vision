@@ -23,10 +23,14 @@ def get_preds(image):
     predictions = detector(
         image,
 <<<<<<< HEAD
+<<<<<<< HEAD
         candidate_labels=["television","tv","box","mirror","wall art","wall decoration","clock","photoframe","cable","air conditioner","white rectangle","black rectangle"]
 =======
         candidate_labels=["television","tv","box","mirror","decor","clock","frame","cable","air conditioner","white rectangle","black rectangle"] #labels can be added or removed according to your preference
 >>>>>>> 8a194d235c9535fdd9baa563bc70dda3f83961de
+=======
+        candidate_labels=["television","tv","box","mirror","wall art","wall decoration","clock","photoframe","cable","air conditioner","white rectangle","black rectangle"] #labels can be added or removed according to your preference
+>>>>>>> ff56c3d5c578cf639c1d59ed1dff3ad22dbae393
     )
     return predictions
 
