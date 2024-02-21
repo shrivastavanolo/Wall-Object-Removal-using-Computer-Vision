@@ -3,5 +3,6 @@ venvs
 __pycache__
 wall images.zip
 wall images
+result_images
 model.h5
 .gitignore
