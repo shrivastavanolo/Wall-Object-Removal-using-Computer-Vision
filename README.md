@@ -84,16 +84,6 @@ This project aims to develop a computer vision model capable of detecting and re
    inpaintf(pipeline, im_pil, masksd, "output_image.jpg")
    ```
 
-## **Results:**
-
-**Image *before* object detection and removal:**
-
- ![Frame 1](https://drive.google.com/uc?export=view&id=1JIEHWxmlH9vSxc1lH5VHymqw_Ar-VfxA)
-
- **Image *after* object detection and removal:**
- 
- ![Frame 1](https://drive.google.com/uc?export=view&id=1gi5_C4PKkTxzx1TL0y70VUVbCu0cb6pH)
-
  ## **Use Cases**
 
 1. **Interior Design Visualization**: Aid in visualizing decor arrangements without physically placing objects.
